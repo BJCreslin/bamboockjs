@@ -28,7 +28,9 @@ export function MyPosts(props) {
             <h3> My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement} onChange={onChangePost} value={props.profilePages.newPostText}/>
+                    <textarea ref={newPostElement} onChange={onChangePost}
+                              value={props.profilePages.newPostText}
+                              placeholder="new Post"/>
                 </div>
                 <div>
                     <button onClick={addPostByClick}>Add post</button>
