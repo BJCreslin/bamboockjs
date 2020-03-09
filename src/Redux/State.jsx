@@ -1,3 +1,7 @@
+import ProfileReducer from "./ProfileReducer";
+import DialogsReducer from "./DialogsReducer";
+import SideBarReducer from "./SideBarReducer";
+
 const ADD_POST = "ADD-NEW-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY";
@@ -46,32 +50,14 @@ let store = {
     },
 
     dispatch(action) {
+let k1=this._state.profilePage;
+let k2=action;
+debugger
+        this._state.profilePage=ProfileReducer(this._state.profilePage,action);
+        this._state.dialogsPage=DialogsReducer(this._state.dialogsPage,action);
+        this._state.sidebar=SideBarReducer(this._state.sidebar,action);
+        this._callSubscriber()
 
-        if (action.type === ADD_POST) {
-            let newPost = {
-                id: this._state.profilePage.posts.length + 1,
-                message: this._state.profilePage.newPostText,
-                likesCount: 0
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = "";
-            this._callSubscriber()
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.text;
-            this._callSubscriber()
-        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-            this._state.dialogsPage.newMessageBody = action.body;
-            this._callSubscriber()
-        } else if (action.type === SEND_MESSAGE) {
-            let body = this._state.dialogsPage.newMessageBody;
-            let newMessage = {
-                id: 6,
-                text: body
-            };
-            this._state.dialogsPage.messages.push(newMessage);
-            this._state.dialogsPage.newMessageBody = "";
-            this._callSubscriber()
-        }
     }
 };
 export default store;
