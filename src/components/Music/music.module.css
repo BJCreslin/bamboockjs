@@ -1,0 +1,10 @@
+
+.content {
+    grid-area: content;
+    background: #BF6030;
+}
+
+
+.item {
+    color: black;
+}

@@ -1,0 +1,17 @@
+
+.content {
+    grid-area: content;
+    background: #BF6030;
+}
+
+.img {
+    max-height: 150px;
+}
+
+.postsBlock {
+    padding: 10px;
+}
+
+.posts {
+    margin-top: 10px;
+}
