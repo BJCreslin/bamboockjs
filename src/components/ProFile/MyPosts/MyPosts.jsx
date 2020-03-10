@@ -1,11 +1,13 @@
 import React from 'react';
 import Post from "./Post/Post";
 import css from "./myposts.module.css";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redux/State";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redux/profile-reducer";
+
 
 export function MyPosts(props) {
 
-    let myPostsElements = props.profilePages.posts.map(
+
+    let myPostsElements = props.posts.map(
         value => (<Post message={value.message} likescount={value.likesCount}/>)
     );
     let newPostElement = React.createRef();
@@ -29,7 +31,7 @@ export function MyPosts(props) {
             <div>
                 <div>
                     <textarea ref={newPostElement} onChange={onChangePost}
-                              value={props.profilePages.newPostText}
+                              value={props.newPostText}
                               placeholder="new Post"/>
                 </div>
                 <div>

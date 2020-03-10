@@ -1,4 +1,4 @@
-import ProfileReducer from "./ProfileReducer";
+import ProfileReducer from "./profile-reducer";
 import DialogsReducer from "./DialogsReducer";
 import SideBarReducer from "./SideBarReducer";
 
@@ -50,12 +50,10 @@ let store = {
     },
 
     dispatch(action) {
-let k1=this._state.profilePage;
-let k2=action;
-debugger
-        this._state.profilePage=ProfileReducer(this._state.profilePage,action);
-        this._state.dialogsPage=DialogsReducer(this._state.dialogsPage,action);
-        this._state.sidebar=SideBarReducer(this._state.sidebar,action);
+
+        this._state.profilePage = ProfileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = DialogsReducer(this._state.dialogsPage, action);
+        this._state.sidebar = SideBarReducer(this._state.sidebar, action);
         this._callSubscriber()
 
     }

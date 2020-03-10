@@ -2,19 +2,20 @@ import React from 'react';
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import css from "./dialogs.module.css";
-import {createNewMessageActionCreator, updateNewMessageActionCreator} from "../../Redux/State";
+import {createNewMessageActionCreator, updateNewMessageActionCreator} from "../../Redux/store";
 
 
 export function Dialogs(props) {
+    let state = props.store.getState().dialogsPage;
 
-    let DialogsDataElements = props.store.getState().dialogsPage.dialogs.map(
+    let DialogsDataElements = state.dialogs.map(
         value => <DialogItem name={value.name} id={value.id}/>);
 
-    let MessageDataElements = props.store.getState().dialogsPage.messages.map(
-        value => <Message text={value.text}/>);
+    let MessageDataElements = state.messages.map(
+        value => <Message text={value.message}/>);
 
     let textArea = React.createRef();
-    let textAreaBody = props.store.getState().dialogsPage.newMessageBody;
+    let textAreaBody = state.newMessageBody;
 
     function changeMessage() {
         let body = textArea.current.value;
