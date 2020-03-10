@@ -4,24 +4,24 @@ import DialogItem from "./DialogItem/DialogItem";
 import css from "./dialogs.module.css";
 
 export function Dialogs(props) {
-    let state = props;
+    debugger
 
-    let DialogsDataElements = state.dialogsPage.dialogs.map(
+    let DialogsDataElements = props.dialogsPage.dialogs.map(
         value => <DialogItem name={value.name} id={value.id}/>);
 
-    let MessageDataElements = state.dialogsPage.messages.map(
+    let MessageDataElements = props.dialogsPage.messages.map(
         value => <Message text={value.message}/>);
 
     let textArea = React.createRef();
-    let textAreaBody = state.newMessageBody;
+    let textAreaBody = props.dialogsPage.newMessageBody;
 
     function changeMessage() {
         let body = textArea.current.value;
-        state.changeMessage(body);
+        props.changeMessage(body);
     }
 
     function onCreateNewMessage() {
-        state.ctreateNewMessage();
+        props.createNewMessage();
     }
 
     return (
