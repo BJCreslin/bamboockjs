@@ -2,16 +2,14 @@ import React from 'react';
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import css from "./dialogs.module.css";
-import {createNewMessageActionCreator, updateNewMessageActionCreator} from "../../Redux/store";
-
 
 export function Dialogs(props) {
-    let state = props.store.getState().dialogsPage;
+    let state = props;
 
-    let DialogsDataElements = state.dialogs.map(
+    let DialogsDataElements = state.dialogsPage.dialogs.map(
         value => <DialogItem name={value.name} id={value.id}/>);
 
-    let MessageDataElements = state.messages.map(
+    let MessageDataElements = state.dialogsPage.messages.map(
         value => <Message text={value.message}/>);
 
     let textArea = React.createRef();
@@ -19,11 +17,11 @@ export function Dialogs(props) {
 
     function changeMessage() {
         let body = textArea.current.value;
-        props.store.dispatch(updateNewMessageActionCreator(body))
+        state.changeMessage(body);
     }
 
-    function ctreateNewMessage() {
-        props.store.dispatch(createNewMessageActionCreator())
+    function onCreateNewMessage() {
+        state.ctreateNewMessage();
     }
 
     return (
@@ -36,7 +34,7 @@ export function Dialogs(props) {
                                   placeholder="Enter a message"/>
                     </div>
                     <div>
-                        <button onClick={ctreateNewMessage}>Новый пост</button>
+                        <button onClick={onCreateNewMessage}>Новый пост</button>
                     </div>
                 </div>
                 <div className={css.dialogs}>

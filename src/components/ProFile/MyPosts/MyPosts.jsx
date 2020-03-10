@@ -1,19 +1,16 @@
 import React from 'react';
 import Post from "./Post/Post";
 import css from "./myposts.module.css";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redux/profile-reducer";
 
 
 export function MyPosts(props) {
-
-
     let myPostsElements = props.posts.map(
         value => (<Post message={value.message} likescount={value.likesCount}/>)
     );
     let newPostElement = React.createRef();
 
-    const addPostByClick = () => {
-        props.dispatch(addPostActionCreator());
+    const postByClick = () => {
+        props.addPostByClick();
     };
 
     function removePostByClick() {
@@ -22,7 +19,7 @@ export function MyPosts(props) {
 
     function onChangePost() {
         let text = newPostElement.current.value;
-        props.dispatch(updateNewPostTextActionCreator(text))
+        props.onChangePost(text)
     }
 
     return (
@@ -35,7 +32,7 @@ export function MyPosts(props) {
                               placeholder="new Post"/>
                 </div>
                 <div>
-                    <button onClick={addPostByClick}>Add post</button>
+                    <button onClick={postByClick}>Add post</button>
                     <button onClick={removePostByClick}>Remove</button>
                 </div>
             </div>
