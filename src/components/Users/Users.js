@@ -3,15 +3,13 @@ import * as axios from "axios";
 import css from "./users.module.css";
 import photos from "../../assets/img/user.png";
 
-
 class Users extends React.Component {
 
-    constructor(props) {
-        super(props);
+    componentDidMount = () => {
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
             this.props.setUsers(response.data.items);
         })
-    }
+    };
 
     render() {
         return <div className={css.mt}>
@@ -30,7 +28,6 @@ class Users extends React.Component {
                             this.props.follow(user.id)
                         }}> UnFollow</button>
                 }</div>
-
                     </span>
                         <span>
                     <div>
@@ -53,7 +50,6 @@ class Users extends React.Component {
             }
         </div>
     }
-
 }
 
 export default Users;
