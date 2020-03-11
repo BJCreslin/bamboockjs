@@ -2,7 +2,7 @@ import React from 'react';
 import css from './users.module.css';
 
 const Users = (props) => {
-    return <div>
+    return <div className={css.mt}>
         {props.users.map(user =>
             <div key={user.id}>
             <span>
