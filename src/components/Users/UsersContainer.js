@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import Users from "./Users";
+import UsersApi from "./UsersApi";
 import {
     followActionCreator,
     setCurrentPageActionCreator,
@@ -37,4 +37,4 @@ const mapDispatchToProps = (dispatch) => {
         }
     }
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersApi);
