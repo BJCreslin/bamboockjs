@@ -25,9 +25,11 @@ class UsersContainer extends React.Component {
 
     onCurrentPageChange = (newCurrentPage) => {
         this.props.setCurrentPage(newCurrentPage);
+        this.props.setToggleFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page= ${newCurrentPage}&count=${this.props.numberForPage}`).then(response => {
             this.props.setUsers(response.data.items);
             this.props.setTotalCount(response.data.totalCount);
+            this.props.setToggleFetching(false);
         })
 
 
