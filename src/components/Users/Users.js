@@ -16,7 +16,7 @@ class Users extends React.Component {
         let pagesCount = Math.ceil(this.props.totalCount / this.props.numberForPage);
         let pages = [];
         let cycleBegin = this.props.currentPage - 10;
-        if (cycleBegin < 0) cycleBegin = 1;
+        if (cycleBegin <=0) cycleBegin = 1;
         let cycleEnd = cycleBegin + 20;
         if (cycleEnd > pagesCount) cycleEnd = pagesCount;
         for (let i = cycleBegin; i < cycleEnd; i++) {
@@ -26,7 +26,8 @@ class Users extends React.Component {
 
         return <div className={css.mt}>
             {pages.map(page => {
-                    return <span className={(page === this.props.currentPage) && css.activePageNumber}>{page + " "}</span>
+                    return <span className={(page === this.props.currentPage) && css.activePageNumber}
+                                 onClick={()=>{this.props.setCurrentPage(page)}}>{page + " "}</span>
                 }
             )}
 
