@@ -1,15 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
-import {
-    followActionCreator,
-    setCurrentPageActionCreator, setToggleFetching,
-    setTotalCountActionCreator,
-    setUsersActionCreator,
-    unfollowActionCreator
-} from "../../Redux/users-reducer";
+import {follow, setCurrentPage, setToggleFetching, setTotalCount, setUsers, unFollow} from "../../Redux/users-reducer";
 import * as axios from "axios";
 import Users from "./Users";
-import spinner  from "../../assets/img/Spinner.svg"
+import spinner from "../../assets/img/Spinner.svg"
 
 
 class UsersContainer extends React.Component {
@@ -46,13 +40,14 @@ class UsersContainer extends React.Component {
             pagesPagination.push(i);
         }
         return (<>
-             {this.props.isFetching ?<img src={spinner}/>:null }
-            <Users currentPage={this.props.currentPage} pagesPagination={pagesPagination} users={this.props.users}
-                      totalCount={this.props.totalCount} numberForPage={this.props.numberForPage}
-                      onCurrentPageChange={this.onCurrentPageChange} follow={this.props.follow}
-                      unFollow={this.props.unFollow}/>
-        </>
-        ) }
+                {this.props.isFetching ? <img src={spinner}/> : null}
+                <Users currentPage={this.props.currentPage} pagesPagination={pagesPagination} users={this.props.users}
+                       totalCount={this.props.totalCount} numberForPage={this.props.numberForPage}
+                       onCurrentPageChange={this.onCurrentPageChange} follow={this.props.follow}
+                       unFollow={this.props.unFollow}/>
+            </>
+        )
+    }
 }
 
 
@@ -66,26 +61,35 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followActionCreator(userId))
-        },
-        unFollow: (userId) => {
-            dispatch(unfollowActionCreator(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersActionCreator(users))
-        },
-        setTotalCount: (totalCount) => {
-            dispatch(setTotalCountActionCreator(totalCount))
-        },
-        setCurrentPage: (currentPage) => {
-            dispatch(setCurrentPageActionCreator(currentPage))
-        },
-        setToggleFetching:(isFetching)=>{
-            dispatch(setToggleFetching(isFetching))
-        }
-    }
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         follow: (userId) => {
+//             dispatch(followActionCreator(userId))
+//         },
+//         unFollow: (userId) => {
+//             dispatch(unfollowActionCreator(userId))
+//         },
+//         setUsers: (users) => {
+//             dispatch(setUsersActionCreator(users))
+//         },
+//         setTotalCount: (totalCount) => {
+//             dispatch(setTotalCountActionCreator(totalCount))
+//         },
+//         setCurrentPage: (currentPage) => {
+//             dispatch(setCurrentPageActionCreator(currentPage))
+//         },
+//         setToggleFetching: (isFetching) => {
+//             dispatch(setToggleFetchingActionCreater(isFetching))
+//         }
+//     }
+// };
+
+const mpDispatchToProps = {
+    follow,
+    unFollow,
+    setUsers,
+    setTotalCount,
+    setCurrentPage,
+    setToggleFetching
 };
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, mpDispatchToProps)(UsersContainer);
